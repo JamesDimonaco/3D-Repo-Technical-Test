@@ -9,7 +9,9 @@ const crypto = require('crypto');
 
 export default function Home() {
   const { setSelectedUser} = useContext(userContext)
+  const [people, setPeople] = useState(null)
   const [pageNumber, setPageNumber] = useState(null)
+
   let seed:string
 
 useEffect(() => {
@@ -31,10 +33,6 @@ if (localStorage.getItem('page') == null){
 
 
 }, [])
-
-const [people, setPeople] = useState(null)
-
-
 
 
   const getUsers = async (pageNum:number) => {
@@ -61,6 +59,7 @@ const [people, setPeople] = useState(null)
             role="list"
             className="mx-auto grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:max-w-5xl lg:gap-x-8 lg:gap-y-12 xl:grid-cols-6"
           >
+
             {people.map((person) => (
               <Link href={`/users/${person.login.username}`}>
               <li onClick={() => setSelectedUser(person)} key={person.login.uuid}>
@@ -78,6 +77,7 @@ const [people, setPeople] = useState(null)
             ))}
           </ul>
         </div>
+
         <nav
         className=" px-4 py-3 flex items-center justify-between  sm:px-6"
         aria-label="Pagination"
@@ -115,11 +115,7 @@ const [people, setPeople] = useState(null)
       </div>    
   </main>}
 
-
-
-
       </div>
-
     </>
   )
 }

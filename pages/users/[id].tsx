@@ -9,9 +9,8 @@ import {IResult} from 'UserDirectory'
 import ErrorPage from "../../components/errorPage";
 
 
-
 export default function User() {
-    const {selectedUser, setSelectedUser} = useContext(userContext)
+    const {selectedUser} = useContext(userContext)
     const router = useRouter()
     const username = router.query
    let user:IResult = selectedUser
