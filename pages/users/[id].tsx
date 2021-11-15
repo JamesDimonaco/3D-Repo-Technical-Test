@@ -1,22 +1,28 @@
 import { useRouter } from "next/router"
 import Image from 'next/image'
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {userContext} from '../../context/userContext'
 import Map from '../../components/Map'
 import Link from 'next/link'
 import { RewindIcon } from '@heroicons/react/outline'
 import {IResult} from 'UserDirectory'
+import ErrorPage from "../../components/errorPage";
 
 
 
 export default function User() {
-    const {selectedUser} = useContext(userContext)
+    const {selectedUser, setSelectedUser} = useContext(userContext)
     const router = useRouter()
     const username = router.query
    let user:IResult = selectedUser
 
+
+
+
+
     return(
         <>
+      {user == null ? <ErrorPage/> :
       <div className="relative py-8 bg-gradient-to-r from-blue-400  to-blue-900">
       <div className='flex justify-center pb-2'>
       <a
@@ -87,7 +93,7 @@ export default function User() {
       </div>
     </div>
 
-   </div>
+   </div>}
 
         </>
     )
